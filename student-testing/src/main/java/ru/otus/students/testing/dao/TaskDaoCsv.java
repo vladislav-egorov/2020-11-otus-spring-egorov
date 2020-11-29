@@ -8,8 +8,8 @@ import org.apache.commons.csv.CSVRecord;
 import ru.otus.students.testing.domain.Answer;
 import ru.otus.students.testing.domain.Task;
 
-import java.io.File;
-import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +25,8 @@ public class TaskDaoCsv implements TaskDao {
     @Override
     @SneakyThrows
     public List<Task> findAll() {
-        File csvFile = new File(getClass().getClassLoader().getResource(pathToCsv).toURI());
-        Reader in = new FileReader(csvFile);
+        InputStream resourceAsStream = this.getClass().getClassLoader().getResourceAsStream(pathToCsv);
+        Reader in = new InputStreamReader(resourceAsStream);
         Iterable<CSVRecord> records = CSVFormat.DEFAULT.parse(in);
         return StreamSupport.stream(records.spliterator(), false)
                 .map(record -> {

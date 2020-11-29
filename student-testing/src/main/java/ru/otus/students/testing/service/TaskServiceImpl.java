@@ -22,7 +22,14 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public String taskToPettyString(Task task) {
+    public void printAllTasks() {
+        List<Task> allTasks = findAllTasks();
+        List<String> collect = allTasks.stream().map(this::taskToPrettyString).collect(Collectors.toList());
+        System.out.println(StringUtils.join(collect, "\n"));
+    }
+
+    @Override
+    public String taskToPrettyString(Task task) {
         String question = task.getQuestion();
         List<Answer> answers = task.getAnswers();
         List<String> collect = IntStream.range(0, answers.size()).mapToObj(

@@ -1,5 +1,3 @@
-import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -7,6 +5,8 @@ import ru.otus.students.testing.domain.Task;
 import ru.otus.students.testing.service.TaskService;
 
 import java.util.List;
+
+import static org.junit.Assert.*;
 
 public class TaskServiceTest {
     private ClassPathXmlApplicationContext context;
@@ -18,15 +18,10 @@ public class TaskServiceTest {
         taskService = context.getBean(TaskService.class);
     }
 
-    @After
-    public void after() {
-        context.close();
-    }
-
     @Test
     public void allCsvRecordsIsNotNull() {
         List<Task> allTasks = taskService.findAllTasks();
-        Assert.assertNotNull(allTasks);
+        assertNotNull(allTasks);
     }
 
     @Test
@@ -35,7 +30,7 @@ public class TaskServiceTest {
         List<Task> allTasks = taskService.findAllTasks();
         Task task = allTasks.get(0);
         String question = task.getQuestion();
-        Assert.assertEquals(knownQuestion, question);
+        assertEquals(knownQuestion, question);
     }
 
     @Test
@@ -44,6 +39,6 @@ public class TaskServiceTest {
         List<Task> allTasks = taskService.findAllTasks();
         Task task = allTasks.get(1);
         String question = task.getQuestion();
-        Assert.assertNotEquals(knownQuestion, question);
+        assertNotEquals(knownQuestion, question);
     }
 }
