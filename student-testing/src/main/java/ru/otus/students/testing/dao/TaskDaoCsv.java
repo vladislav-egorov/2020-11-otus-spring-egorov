@@ -1,7 +1,6 @@
 package ru.otus.students.testing.dao;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
@@ -17,9 +16,9 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.StreamSupport;
 
-@Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class TaskDaoCsv implements TaskDao {
+
     private final String pathToCsv;
 
     @Override
