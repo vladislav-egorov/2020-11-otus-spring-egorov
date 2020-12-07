@@ -1,6 +1,5 @@
 package ru.otus.students.testing.config;
 
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -9,7 +8,6 @@ import org.springframework.context.annotation.PropertySource;
 import ru.otus.students.testing.dao.TaskDao;
 import ru.otus.students.testing.dao.TaskDaoCsv;
 
-@Getter
 @Configuration
 @RequiredArgsConstructor
 @PropertySource("classpath:application.properties")
@@ -36,5 +34,9 @@ public class ApplicationConfig {
         return successMessage;
     }
 
+    @Bean
+    public String helloMessage(@Value("${questions.message.hello}") String helloMessage) {
+        return helloMessage;
+    }
 
 }

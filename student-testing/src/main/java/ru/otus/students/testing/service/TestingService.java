@@ -5,25 +5,17 @@ import ru.otus.students.testing.domain.Task;
 import java.util.List;
 
 public interface TestingService {
-    default void startTesting() {
-        long rightAnswers = getAllTasks().stream()
-                .map(this::testTask)
-                .filter(answer -> answer)
-                .count();
-        if (rightAnswers >= getRightAnswersCount()) {
-            testingSuccess();
-        } else {
-            testingFailed();
-        }
-    }
+    void startTesting();
+
+    String askName();
 
     Integer getRightAnswersCount();
 
-    void testingSuccess();
+    void onTestingSuccess();
 
-    boolean testTask(Task task);
+    boolean startTestingFromTask(Task task);
 
     List<Task> getAllTasks();
 
-    void testingFailed();
+    void onTestingFailed();
 }

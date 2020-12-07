@@ -12,6 +12,7 @@ import ru.otus.students.testing.service.TaskServiceImpl;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -42,6 +43,6 @@ public class TaskServiceTest {
     void firstTaskRightAnswerIs() {
         Task task = taskService.findAllTasks().get(0);
         Answer answer = task.getAnswers().get(0);
-        assertThat(answer.getIsItRight()).isTrue();
+        assertTrue(answer.getIsItRight());
     }
 }

@@ -16,6 +16,7 @@ public class ConsoleTestingService implements TestingService {
     private final Integer rightAnswersCount;
     private final String failMessage;
     private final String successMessage;
+    private final String helloMessage;
 
 
     public List<Task> getAllTasks() {
@@ -26,15 +27,35 @@ public class ConsoleTestingService implements TestingService {
         return rightAnswersCount;
     }
 
-    public void testingFailed() {
+    public void onTestingFailed() {
         System.out.println(failMessage);
     }
 
-    public void testingSuccess() {
+    public void onTestingSuccess() {
         System.out.println(successMessage);
     }
 
-    public boolean testTask(Task task) {
+    @Override
+    public void startTesting() {
+        askName();
+        long rightAnswers = getAllTasks().stream()
+                .map(this::startTestingFromTask)
+                .filter(answer -> answer)
+                .count();
+        if (rightAnswers >= getRightAnswersCount()) {
+            onTestingSuccess();
+        } else {
+            onTestingFailed();
+        }
+    }
+
+    public String askName() {
+        System.out.println(helloMessage);
+        Scanner sc = new Scanner(System.in);
+        return sc.nextLine();
+    }
+
+    public boolean startTestingFromTask(Task task) {
         String printed = taskService.taskToPrettyString(task);
         System.out.println(printed);
         Scanner sc = new Scanner(System.in);
