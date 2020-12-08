@@ -1,7 +1,8 @@
 package ru.otus.students.testing.service;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
 import ru.otus.students.testing.dao.TaskDao;
 import ru.otus.students.testing.domain.Answer;
 import ru.otus.students.testing.domain.Task;
@@ -10,8 +11,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-
-@AllArgsConstructor
+@Service
+@RequiredArgsConstructor
 public class TaskServiceImpl implements TaskService {
 
     private final TaskDao taskDao;
@@ -19,13 +20,6 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<Task> findAllTasks() {
         return taskDao.findAll();
-    }
-
-    @Override
-    public void printAllTasks() {
-        List<Task> allTasks = findAllTasks();
-        List<String> collect = allTasks.stream().map(this::taskToPrettyString).collect(Collectors.toList());
-        System.out.println(StringUtils.join(collect, "\n"));
     }
 
     @Override
@@ -42,4 +36,5 @@ public class TaskServiceImpl implements TaskService {
         String join = StringUtils.join(collect, "\n");
         return StringUtils.join(question + "\n", join);
     }
+
 }

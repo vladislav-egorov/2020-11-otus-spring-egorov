@@ -7,7 +7,5 @@ import java.util.List;
 public interface TaskService {
     List<Task> findAllTasks();
 
-    void printAllTasks();
-
     String taskToPrettyString(Task task);
 }
