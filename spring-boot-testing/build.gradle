@@ -19,10 +19,18 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
 	compileOnly 'org.projectlombok:lombok'
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.apache.commons:commons-csv:1.4'
+	implementation 'org.apache.commons:commons-lang3:3.6'
 	annotationProcessor 'org.projectlombok:lombok'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.18.1'
+	testImplementation 'org.mockito:mockito-core:2.21.0'
+	testImplementation 'org.mockito:mockito-junit-jupiter:2.28.2'
+	testImplementation(platform('org.junit:junit-bom:5.7.0'))
+	testImplementation('org.junit.jupiter:junit-jupiter')
 }
 
 test {
