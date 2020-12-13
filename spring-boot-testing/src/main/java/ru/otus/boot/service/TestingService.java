@@ -1,6 +1,6 @@
-package ru.otus.springboottesting.service;
+package ru.otus.boot.service;
 
-import ru.otus.springboottesting.domain.Task;
+import ru.otus.boot.domain.Task;
 
 import java.util.List;
 

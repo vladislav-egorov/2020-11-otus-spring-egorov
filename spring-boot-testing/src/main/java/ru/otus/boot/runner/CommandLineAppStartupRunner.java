@@ -1,9 +1,9 @@
-package ru.otus.springboottesting.runner;
+package ru.otus.boot.runner;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import ru.otus.springboottesting.service.TestingService;
+import ru.otus.boot.service.TestingService;
 
 @Component
 @RequiredArgsConstructor

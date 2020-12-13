@@ -1,11 +1,13 @@
-package ru.otus.springboottesting.dao;
+package ru.otus.boot.dao;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
-import ru.otus.springboottesting.domain.Answer;
-import ru.otus.springboottesting.domain.Task;
+import org.springframework.stereotype.Component;
+import ru.otus.boot.config.QuestionsConfig;
+import ru.otus.boot.domain.Answer;
+import ru.otus.boot.domain.Task;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -16,15 +18,16 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.StreamSupport;
 
+@Component
 @RequiredArgsConstructor
 public class TaskDaoCsv implements TaskDao {
 
-    private final String pathToCsv;
+    private final QuestionsConfig questionsConfig;
 
     @Override
     @SneakyThrows
     public List<Task> findAll() {
-        InputStream resourceAsStream = this.getClass().getClassLoader().getResourceAsStream(pathToCsv);
+        InputStream resourceAsStream = this.getClass().getClassLoader().getResourceAsStream(questionsConfig.getFile());
         Reader in = new InputStreamReader(resourceAsStream);
         Iterable<CSVRecord> records = CSVFormat.DEFAULT.parse(in);
         return StreamSupport.stream(records.spliterator(), false)

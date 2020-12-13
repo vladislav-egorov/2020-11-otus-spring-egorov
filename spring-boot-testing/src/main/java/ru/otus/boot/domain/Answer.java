@@ -1,4 +1,4 @@
-package ru.otus.springboottesting.domain;
+package ru.otus.boot.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

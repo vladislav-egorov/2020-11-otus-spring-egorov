@@ -1,11 +1,11 @@
-package ru.otus.springboottesting.service;
+package ru.otus.boot.service;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
-import ru.otus.springboottesting.dao.TaskDao;
-import ru.otus.springboottesting.domain.Answer;
-import ru.otus.springboottesting.domain.Task;
+import ru.otus.boot.dao.TaskDao;
+import ru.otus.boot.domain.Answer;
+import ru.otus.boot.domain.Task;
 
 import java.util.List;
 import java.util.stream.Collectors;

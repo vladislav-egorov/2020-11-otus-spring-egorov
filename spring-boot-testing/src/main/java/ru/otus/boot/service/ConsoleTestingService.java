@@ -1,9 +1,10 @@
-package ru.otus.springboottesting.service;
+package ru.otus.boot.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.otus.springboottesting.domain.Answer;
-import ru.otus.springboottesting.domain.Task;
+import ru.otus.boot.config.QuestionsConfig;
+import ru.otus.boot.domain.Answer;
+import ru.otus.boot.domain.Task;
 
 import java.util.List;
 import java.util.Scanner;
@@ -13,26 +14,23 @@ import java.util.Scanner;
 public class ConsoleTestingService implements TestingService {
 
     private final TaskService taskService;
-    private final Integer rightAnswersCount;
-    private final String failMessage;
-    private final String successMessage;
-    private final String helloMessage;
-
+    private final QuestionsConfig questionsConfig;
+    private final MessageSourceService messageSourceService;
 
     public List<Task> getAllTasks() {
         return taskService.findAllTasks();
     }
 
     public Integer getRightAnswersCount() {
-        return rightAnswersCount;
+        return questionsConfig.getAnswers();
     }
 
     public void onTestingFailed() {
-        System.out.println(failMessage);
+        System.out.println(messageSourceService.getMessageWithOutArgs("fail"));
     }
 
     public void onTestingSuccess() {
-        System.out.println(successMessage);
+        System.out.println(messageSourceService.getMessageWithOutArgs("success"));
     }
 
     @Override
@@ -50,7 +48,7 @@ public class ConsoleTestingService implements TestingService {
     }
 
     public String askName() {
-        System.out.println(helloMessage);
+        System.out.println(messageSourceService.getMessageWithOutArgs("hello"));
         Scanner sc = new Scanner(System.in);
         return sc.nextLine();
     }
