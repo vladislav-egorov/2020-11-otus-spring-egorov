@@ -1,0 +1,6 @@
+application:
+  locale: ru_RU
+
+questions:
+  file: questions_${application.locale}.csv
+  answers: 3
